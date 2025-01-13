@@ -32,7 +32,7 @@ Function ListDoubleGet# (LIST$, POSITION As _Unsigned Long)
     If Len(LIST$) < 5 Then Exit Function
     If Asc(LIST$) <> 4 Then Exit Function
     If CVL(Mid$(LIST$, 2, 4)) < POSITION - 1 Then Exit Function
-    ListDoubleGet# = CVD(Mid$(LIST$, 6 + 8 * POSITION, 4))
+    ListDoubleGet# = CVD(Mid$(LIST$, 8 * POSITION - 2, 4))
 End Function
 Sub ListDoubleInsert (LIST$, ITEM#, POSITION As _Unsigned Long)
     If Len(LIST$) < 5 Then Exit Sub

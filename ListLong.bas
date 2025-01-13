@@ -32,7 +32,7 @@ Function ListLongGet& (LIST$, POSITION As _Unsigned Long)
     If Len(LIST$) < 5 Then Exit Function
     If Asc(LIST$) <> 3 Then Exit Function
     If CVL(Mid$(LIST$, 2, 4)) < POSITION - 1 Then Exit Function
-    ListLongGet& = CVL(Mid$(LIST$, 6 + 4 * POSITION, 4))
+    ListLongGet& = CVL(Mid$(LIST$, 2 + 4 * POSITION, 4))
 End Function
 Sub ListLongInsert (LIST$, ITEM&, POSITION As _Unsigned Long)
     If Len(LIST$) < 5 Then Exit Sub

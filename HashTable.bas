@@ -6,37 +6,33 @@ Function HashTableNew$
     HashTableNew$ = HTN$ + HTNL$
 End Function
 Sub HashTableInsert (HASHTABLE$, ITEM$)
-    H~%% = HashTable_CalculateHash~%%(ITEM$)
+    H~% = HashTable_CalculateHash~%(ITEM$)
     H$ = Mid$(HASHTABLE$, 6)
-    L$ = HashTable_ListGet$(H$, H~%%)
+    L$ = HashTable_ListGet$(H$, H~%)
     HashTable_ListAdd L$, ITEM$
-    HashTable_ListEdit H$, L$, H~%%
+    HashTable_ListEdit H$, L$, H~%
     HASHTABLE$ = Left$(HASHTABLE$, 5) + H$
 End Sub
 Function HashTableSearch~& (HASHTABLE$, ITEM$)
-    H~%% = HashTable_CalculateHash~%%(ITEM$)
-    HashTableSearch~& = HashTable_ListSearch~&(HashTable_ListGet$(Mid$(HASHTABLE$, 6), H~%%), ITEM$)
-End Function
-Function HashTableSearchI~& (HASHTABLE$, ITEM$)
-    H~%% = HashTable_CalculateHash~%%(ITEM$)
-    HashTableSearchI~& = HashTable_ListSearchI~&(HashTable_ListGet$(Mid$(HASHTABLE$, 6), H~%%), ITEM$)
+    H~% = HashTable_CalculateHash~%(ITEM$)
+    HashTableSearch~& = HashTable_ListSearch~&(HashTable_ListGet$(Mid$(HASHTABLE$, 6), H~%), ITEM$)
 End Function
 Sub HashTableDelete (HASHTABLE$, ITEM$)
-    H~%% = HashTable_CalculateHash~%%(ITEM$)
+    H~% = HashTable_CalculateHash~%(ITEM$)
     H$ = Mid$(HASHTABLE$, 6)
-    L$ = HashTable_ListGet$(H$, H~%%)
+    L$ = HashTable_ListGet$(H$, H~%)
     S~& = HashTable_ListSearch~&(L$, ITEM$)
     If S~& = 0 Then Exit Sub
     HashTable_ListDelete L$, S~&
-    HashTable_ListEdit H$, L$, H~%%
+    HashTable_ListEdit H$, L$, H~%
     HASHTABLE$ = Left$(HASHTABLE$, 5) + H$
 End Sub
-Function HashTable_CalculateHash~%% (ITEM$)
-    T~%% = 0
+Function HashTable_CalculateHash~% (ITEM$)
+    T~% = 0
     For I~& = 1 To Len(ITEM$)
-        T~%% = T~%% + Asc(ITEM$, I~&)
+        T~% = T~% + Asc(ITEM$, I~&)
     Next I~&
-    HashTable_CalculateHash~%% = T~%%
+    HashTable_CalculateHash~% = 1 + T~% Mod 256
 End Function
 Function HashTable_ListNew$
     HashTable_ListNew$ = Chr$(1) + MKL$(0)
