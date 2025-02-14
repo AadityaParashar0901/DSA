@@ -93,3 +93,10 @@ Sub ListEdit (LIST$, ITEM$, POSITION As _Unsigned Long)
     Next I
     LIST$ = Left$(LIST$, O - 1) + MKI$(Len(ITEM$)) + ITEM$ + Mid$(LIST$, O + CVI(Mid$(LIST$, O, 2)) + 2)
 End Sub
+Function ListAppend$ (LIST1$, LIST2$)
+    If Len(LIST1$) < 5 Then Exit Function
+    If Len(LIST2$) < 5 Then Exit Function
+    If Asc(LIST1$) <> 1 Then Exit Function
+    If Asc(LIST2$) <> 1 Then Exit Function
+    ListAppend$ = Chr$(1) + MKL$(CVL(Mid$(LIST1$, 2, 4)) + CVL(Mid$(LIST2$, 2, 4))) + Mid$(LIST1$, 6) + Mid$(LIST2$, 6)
+End Function
