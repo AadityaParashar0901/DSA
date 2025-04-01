@@ -1,6 +1,16 @@
 Function ListLongNew$
     ListLongNew$ = Chr$(3) + MKL$(0)
 End Function
+Function ListLongFromArray$ (ARRAY() As Long, START_INDEX~&, END_INDEX~&)
+    LIST$ = Chr$(3) + MKL$(END_INDEX~& - START_INDEX~& + 1) + String$((END_INDEX~& - START_INDEX~& + 1) * 4, 0)
+    K~& = 0
+    For I~& = START_INDEX~& To END_INDEX~&
+        K~& = K~& + 1
+        Mid$(LIST$, 4 * K~& + 2, 4) = MKL$(ARRAY(I~&))
+    Next I~&
+    ListLongFromArray$ = LIST$
+    LIST$ = ""
+End Function
 Function ListLongPrint$ (LIST$)
     If Len(LIST$) < 5 Then Exit Function
     If Asc(LIST$) <> 3 Then Exit Function
