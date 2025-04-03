@@ -18,12 +18,12 @@ Function ListLongPrint$ (LIST$)
     T$ = String$(Len(LIST$) - 4, 0)
     Asc(T$) = 91 '[
     For I = 1 To CVL(Mid$(LIST$, 2, 4)) - 1
-        N$ = _Trim$(Str$(CVL(Mid$(LIST$, 6 + I * 4, 4))))
+        N$ = _Trim$(Str$(CVL(Mid$(LIST$, 2 + I * 4, 4))))
         L = Len(N$)
         Mid$(T$, T_OFFSET, L + 1) = N$ + ","
         T_OFFSET = T_OFFSET + L + 1
     Next I
-    N$ = _Trim$(Str$(CVL(Mid$(LIST$, 6 + I * 4, 4))))
+    N$ = _Trim$(Str$(CVL(Mid$(LIST$, 2 + I * 4, 4))))
     L = Len(N$)
     Mid$(T$, T_OFFSET, L + 1) = N$ + "]"
     ListLongPrint$ = Left$(T$, T_OFFSET + L + 1)
