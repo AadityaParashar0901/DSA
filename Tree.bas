@@ -18,23 +18,26 @@ Function H2$ (A~%%)
     H$ = Hex$(A~%%)
     H2$ = String$(2 - Len(H$), 48) + H$
 End Function
-Function TreeNew$
-    TreeNew$ = Chr$(6) + MKL$(0)
+Function TreeNew$ (NumberOfChildren~&)
+    TreeNew$ = Chr$(6) + MKL$(0) + MKL$(NumberOfChildren~&)
 End Function
-Sub TreeInsert (QUEUE$, ITEM$)
-    If Len(QUEUE$) < 5 Then Exit Sub
-    If Asc(QUEUE$) <> 6 Then Exit Sub
-    QUEUE$ = Chr$(5) + MKL$(CVL(Mid$(QUEUE$, 2, 4)) + 1) + Mid$(QUEUE$, 6) + MKI$(Len(ITEM$)) + ITEM$
+Sub TreeInsert (TREE$, ITEM$)
+    If Len(TREE$) < 5 Then Exit Sub
+    If Asc(TREE$) <> 6 Then Exit Sub
+    TREE$ = Chr$(6) + MKL$(CVL(Mid$(TREE$, 2, 4)) + 1) + Mid$(TREE$, 6) + MKI$(Len(ITEM$)) + ITEM$
 End Sub
-Function QueuePeek$ (QUEUE$)
-    If Len(QUEUE$) < 5 Then Exit Function
-    If Asc(QUEUE$) <> 6 Then Exit Function
-    If CVL(Mid$(QUEUE$, 2, 4)) < 1 Then Exit Function
-    QueuePeek$ = Mid$(QUEUE$, 8, CVI(Mid$(QUEUE$, 6, 2)))
+Function TreeSearch~& (TREE$)
+    If Len(TREE$) < 5 Then Exit Function
+    If Asc(TREE$) <> 6 Then Exit Function
+    If CVL(Mid$(TREE$, 2, 4)) < 1 Then Exit Function
+    TreeSearch~& = 0
 End Function
-Function QueueRemove$ (QUEUE$)
-    If Len(QUEUE$) < 5 Then Exit Function
-    If Asc(QUEUE$) <> 6 Then Exit Function
-    QueueRemove$ = Mid$(QUEUE$, 8, CVI(Mid$(QUEUE$, 6, 2)))
-    QUEUE$ = Chr$(5) + MKL$(CVL(Mid$(QUEUE$, 2, 4)) - 1) + Mid$(QUEUE$, CVI(Mid$(QUEUE$, 6, 2)) + 8)
+Function TreeGet$ (TREE$, TRAVERSE$)
+
+End Function
+Function TreeTraverse$ (TREE$, ORDER~%%)
+    If Len(TREE$) < 5 Then Exit Function
+    If Asc(TREE$) <> 6 Then Exit Function
+    TREERemove$ = Mid$(TREE$, 8, CVI(Mid$(TREE$, 6, 2)))
+    TREE$ = Chr$(5) + MKL$(CVL(Mid$(TREE$, 2, 4)) - 1) + Mid$(TREE$, CVI(Mid$(TREE$, 6, 2)) + 8)
 End Function
