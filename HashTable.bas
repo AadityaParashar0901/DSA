@@ -1,7 +1,7 @@
 Function HashTableStringNew$ (HASH_TABLE_SIZE As _Unsigned Long)
     HTN$ = Chr$(7) + MKL$(HASH_TABLE_SIZE)
     HTNL$ = Chr$(1) + MKL$(HASH_TABLE_SIZE) + String$(7 * HASH_TABLE_SIZE, 0)
-    LSN$ = ListStringNew$
+    LSN$ = MKI$(5) + ListStringNew$
     For I~& = 1 To HASH_TABLE_SIZE: Mid$(HTNL$, 7 * I~& - 1, 7) = LSN$: Next I~&
     HashTableStringNew$ = HTN$ + HTNL$
 End Function
@@ -75,3 +75,4 @@ Sub HashTableLongDelete (HASHTABLE$, ITEM~&)
     ListStringEdit H$, L$, 1 + H~%%
     HASHTABLE$ = Left$(HASHTABLE$, 1) + H$
 End Sub
+
